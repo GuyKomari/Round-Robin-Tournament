@@ -5,18 +5,14 @@ public class RoundRobinTournamentFactory
 	private int[][] tournament2dArray;
 		
 	public RoundRobinTournamentFactory(int num_teams) {
-	    if (num_teams % 2 == 0)
-	        GenerateRoundRobinEven(num_teams);
-	    else
-	        GenerateRoundRobinOdd(num_teams);
+	    if (num_teams % 2 == 0)	GenerateRoundRobinEven(num_teams);
+	    else	GenerateRoundRobinOdd(num_teams);
 	} 
-
 	// Return an array where results(i, j) gives
 	// the opponent of team i in round j.
 	private void GenerateRoundRobinOdd(int num_teams) {
 	    int n2 = (int)((num_teams - 1) / 2);
 	    tournament2dArray = new int[num_teams] [num_teams];
-
 	    // Initialize the list of teams.
 	    int[] teams = new int[num_teams];
 	    for (int i = 0; i < num_teams; i++) 
@@ -32,11 +28,7 @@ public class RoundRobinTournamentFactory
 	            tournament2dArray[team1][round] = team2;
 	            tournament2dArray[team2][round] = team1;
 	        }
-
-	        // Set the team with the bye.
 	        tournament2dArray[teams[0]][round] = BYE;
-
-	        // Rotate the array.
 	        RotateArray(teams);
 	    }
 	}
@@ -50,7 +42,6 @@ public class RoundRobinTournamentFactory
 	        }
 	        teams[0] = temp;
 	}
-	
 	private void GenerateRoundRobinEven(int num_teams)
 	{
 	    // Generate the result for one fewer teams.

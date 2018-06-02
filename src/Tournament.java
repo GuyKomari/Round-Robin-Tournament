@@ -16,11 +16,11 @@ public class Tournament
 	
 	private HashMap<Integer, List<Game>> gamesMap;
 	
-	private RoundRobinTournamentFactory roundRobinTournamentFactor;
+	private RoundRobinTournamentFactory RoundRobinTournamentFactory;
 	
 	public Tournament(String[] teamsName, int numOfTeams) {
-		this.roundRobinTournamentFactor = new RoundRobinTournamentFactory(numOfTeams);
-		this.tournamentAsArray = roundRobinTournamentFactor.getTournament2dArray();
+		this.RoundRobinTournamentFactory = new RoundRobinTournamentFactory(numOfTeams);
+		this.tournamentAsArray = RoundRobinTournamentFactory.getTournament2dArray();
 		this.numOfTeams = numOfTeams;
 		this.numOfRounds = numOfTeams % 2 == 0 ? numOfTeams - 1 : numOfTeams;
 		this.teamsList = new ArrayList<>();
@@ -31,9 +31,7 @@ public class Tournament
 		}
 		setGames();
 	}
-	
-	private void setGames() {
-		
+	private void setGames() {	
 		Team team1, team2;
 		for(int j = 0; j < numOfRounds; j++){
 			List<Game> gamesList = new ArrayList<>();
@@ -55,23 +53,17 @@ public class Tournament
 			}
 			gamesMap.put(j, gamesList);
 		}
-	}
-	
+	}	
 	public void runTournament() {
-		for(int i = 0; i < numOfRounds; i++)
-		{
+		for(int i = 0; i < numOfRounds; i++){
 			List<Game> listOfGamesInRound = gamesMap.get(i);
 			for(Game game: listOfGamesInRound) {
 				Team team1 = game.getTeam1();
 				Team team2 = game.getTeam2();
 				Team winner = game.getWinner();
 				if(team2 != null && winner != null){
-					if(winner.equals(team1)){
-						team1.setScore(team1.getScore() + 1);
-					}
-					else{
-						team2.setScore(team2.getScore() + 1);
-					}
+					if(	winner.equals(team1)){team1.setScore(team1.getScore() + 1);}
+					else{	team2.setScore(team2.getScore() + 1);	}
 				}
 			}
 		}		
@@ -85,8 +77,8 @@ public class Tournament
 		return teamsList;
 	}
 
-	public RoundRobinTournamentFactory getRoundRobinTournamentFactor() {
-		return roundRobinTournamentFactor;
+	public RoundRobinTournamentFactory RoundRobinTournamentFactory() {
+		return RoundRobinTournamentFactory;
 	}
 
 	public int getNumOfTeams() {

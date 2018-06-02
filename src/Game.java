@@ -10,17 +10,17 @@ public class Game {
 	
 	private double effort2;
 	
+	public Game(int gameNumber, Team team1, Team team2) {
+		GameNumber = gameNumber;
+		this.team1 = team1;
+		this.team2 = team2;
+	}
+	
 	public Team getWinner() {
 		// case team2 in "Bye" state OR both teams used the same effort
 		if(team2 == null || effort1 == effort2)
 			return null;
 		return effort1 > effort2 ? team1 : team2;
-	}
-
-	public Game(int gameNumber, Team team1, Team team2) {
-		GameNumber = gameNumber;
-		this.team1 = team1;
-		this.team2 = team2;
 	}
 
 	public int getGameNumber() {
